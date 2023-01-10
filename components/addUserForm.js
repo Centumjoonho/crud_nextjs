@@ -30,9 +30,9 @@ export default function AddUserForm() {
       <div className="input-type">
         <input
           type="text"
-          name="full-name"
+          name="name"
           onChange={setFormData}
-          placeholder="Full-Name"
+          placeholder="Name"
           className="w-full px-5 py-3 border rounded-md focus:outline-none"
         />
       </div>
