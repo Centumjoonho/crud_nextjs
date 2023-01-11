@@ -1,10 +1,14 @@
 import { BiEraser, BiTrashAlt } from "react-icons/bi";
 import { getUsers } from "../lib/helper";
 import { useQuery } from "react-query";
+import { spinner } from "../public/Bean Eater-1s-200px.gif";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleChangeAction } from "../redux/reducer";
 
 export default function Table() {
   const { isLoading, isError, data, error } = useQuery("users", getUsers);
-  if (isLoading) return <div>Note-Board is Loading...</div>;
+
+  if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Got Error{error}</div>;
 
   return (
@@ -42,6 +46,13 @@ export default function Table() {
 }
 
 function Tr({ id, name, avatar, email, date, status, comments }) {
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+
+  const onUpdate = () => {
+    dispatch(toggleChangeAction());
+    console.log(visible);
+  };
   const k_date = new Date().toLocaleDateString("ko-kr");
   return (
     <tr className="text-center bg-gray-50">
@@ -77,10 +88,15 @@ function Tr({ id, name, avatar, email, date, status, comments }) {
       </td>
       <td className="flex justify-around gap-3 px-16 py-3" alt="수정">
         <button className="cursor ">
-          <BiEraser size={27} color="green"></BiEraser>
+          <BiEraser
+            className="cursor"
+            onClick={onUpdate}
+            size={27}
+            color="green"
+          ></BiEraser>
         </button>
         <button className="cursor ">
-          <BiTrashAlt size={25} color="red"></BiTrashAlt>
+          <BiTrashAlt className="cursor" size={25} color="red"></BiTrashAlt>
         </button>
       </td>
     </tr>
