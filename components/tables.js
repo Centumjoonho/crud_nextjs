@@ -21,16 +21,13 @@ export default function Table() {
           <th className="px-16 py-2">
             <span className="text-gray-200">Name</span>
           </th>
-          <th className="px-16 py-2">
+          {/* <th className="px-16 py-2">
             <span className="text-gray-200">Email</span>
-          </th>
+          </th> */}
 
           <th className="px-16 py-2">
             <span className="text-gray-200">Date</span>
           </th>
-          {/* <th className="px-16 py-2">
-            <span className="text-gray-200">Status</span>
-          </th> */}
           <th className="px-16 py-2">
             <span className="text-gray-200">Comment</span>
           </th>
@@ -48,7 +45,7 @@ export default function Table() {
   );
 }
 
-function Tr({ _id, name, email, date, comments }) {
+function Tr({ _id, name, date, comments }) {
   const visible = useSelector((state) => state.app.client.toggleForm);
   console.log("visible", visible);
   const dispatch = useDispatch();
@@ -72,9 +69,9 @@ function Tr({ _id, name, email, date, comments }) {
           {name || "누구세요?"}
         </span>
       </td>
-      <td className="px-16 py-3" alt="email">
+      {/* <td className="px-16 py-3" alt="email">
         <span>{email || "Unknown"}</span>
-      </td>
+      </td> */}
       <td className="px-16 py-3" alt="date">
         <span>{date || k_date}</span>
       </td>

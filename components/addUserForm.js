@@ -1,7 +1,6 @@
 import { BiPlus } from "react-icons/bi";
 import { useReducer } from "react";
 import Success from "./success";
-import Error from "./error";
 import { useQueryClient, useMutation } from "react-query";
 import { addUser } from "../lib/helper";
 import Bug from "./bug";
@@ -21,10 +20,9 @@ export default function AddUserForm({ formData, setFormData }) {
     if (Object.keys(formData).length == 0)
       return console.log("Don't have FormData");
     console.log("formData : ", formData);
-    let { name, email, date, comments } = formData;
+    let { name, date, comments } = formData;
     const model = {
       name: name,
-      email,
       date,
       comments: comments,
     };
@@ -52,7 +50,7 @@ export default function AddUserForm({ formData, setFormData }) {
         />
       </div>
       {/* 이메일 */}
-      <div className="input-type">
+      {/* <div className="input-type">
         <input
           type="text"
           name="email"
@@ -60,7 +58,7 @@ export default function AddUserForm({ formData, setFormData }) {
           placeholder="Email"
           className="w-full px-5 py-3 border rounded-md focus:outline-none"
         />
-      </div>
+      </div> */}
       <div className="input-type">
         <input
           type="date"

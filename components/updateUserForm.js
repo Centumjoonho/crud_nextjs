@@ -20,7 +20,7 @@ export default function UpdateUserForm({ formId, formData, setFormData }) {
   if (isLoading) return <div>Loading...!</div>;
   if (isError) return <div>Error</div>;
 
-  const { name, date, email, comments } = data;
+  const { name, date, comments } = data;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ export default function UpdateUserForm({ formId, formData, setFormData }) {
         />
       </div>
       {/* 이메일 */}
-      <div className="input-type">
+      {/* <div className="input-type">
         <input
           type="text"
           name="email"
@@ -56,7 +56,7 @@ export default function UpdateUserForm({ formId, formData, setFormData }) {
           placeholder="Email"
           className="w-full px-5 py-3 border rounded-md focus:outline-none"
         />
-      </div>
+      </div> */}
       <div className="input-type">
         <input
           type="date"
