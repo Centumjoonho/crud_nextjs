@@ -1,9 +1,12 @@
 import { BiEraser, BiTrashAlt } from "react-icons/bi";
 import { getUsers } from "../lib/helper";
 import { useQuery } from "react-query";
-import { spinner } from "../public/Bean Eater-1s-200px.gif";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleChangeAction } from "../redux/reducer";
+import {
+  toggleChangeAction,
+  updateAction,
+  deleteAction,
+} from "../redux/reducer";
 
 export default function Table() {
   const { isLoading, isError, data, error } = useQuery("users", getUsers);
@@ -23,11 +26,11 @@ export default function Table() {
           </th>
 
           <th className="px-16 py-2">
-            <span className="text-gray-200">Birthday</span>
+            <span className="text-gray-200">Date</span>
           </th>
-          <th className="px-16 py-2">
+          {/* <th className="px-16 py-2">
             <span className="text-gray-200">Status</span>
-          </th>
+          </th> */}
           <th className="px-16 py-2">
             <span className="text-gray-200">Comment</span>
           </th>
@@ -45,46 +48,38 @@ export default function Table() {
   );
 }
 
-function Tr({ id, name, avatar, email, date, status, comments }) {
+function Tr({ _id, name, email, date, comments }) {
   const visible = useSelector((state) => state.app.client.toggleForm);
+  console.log("visible", visible);
   const dispatch = useDispatch();
 
   const onUpdate = () => {
-    dispatch(toggleChangeAction());
-    console.log(visible);
+    dispatch(toggleChangeAction(_id));
+    if (visible) {
+      dispatch(updateAction(_id));
+    }
+  };
+  const onDelete = () => {
+    if (!visible) {
+      dispatch(deleteAction(_id));
+    }
   };
   const k_date = new Date().toLocaleDateString("ko-kr");
   return (
     <tr className="text-center bg-gray-50">
       <td className="flex flex-row items-center px-16 py-3">
-        <img
-          src={avatar || "#"}
-          alt=""
-          className="object-cover w-10 h-10 rounded-full"
-        />
         <span className="ml-2 font-semibold text-center">
-          {name || "Unknown"}
+          {name || "누구세요?"}
         </span>
       </td>
       <td className="px-16 py-3" alt="email">
         <span>{email || "Unknown"}</span>
       </td>
-      <td className="px-16 py-3" alt="birthday">
+      <td className="px-16 py-3" alt="date">
         <span>{date || k_date}</span>
       </td>
-      <td className="px-16 py-3" alt="status">
-        <button className="cursor">
-          <span
-            className={`px-5 py-1 text-white ${
-              status == "active" ? "bg-green-500" : "bg-rose-500"
-            } rounded-lg`}
-          >
-            {status || "Unknown"}
-          </span>
-        </button>
-      </td>
       <td className="px-16 py-3" alt="comment">
-        <span>{comments || "hello joonho ! "}</span>
+        <span>{comments || `${name} 바보 ! `}</span>
       </td>
       <td className="flex justify-around gap-3 px-16 py-3" alt="수정">
         <button className="cursor ">
@@ -96,7 +91,12 @@ function Tr({ id, name, avatar, email, date, status, comments }) {
           ></BiEraser>
         </button>
         <button className="cursor ">
-          <BiTrashAlt className="cursor" size={25} color="red"></BiTrashAlt>
+          <BiTrashAlt
+            className="cursor"
+            onClick={onDelete}
+            size={25}
+            color="red"
+          ></BiTrashAlt>
         </button>
       </td>
     </tr>

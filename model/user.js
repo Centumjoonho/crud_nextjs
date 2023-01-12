@@ -5,7 +5,7 @@ const userSchema = new Schema({
   avatar: String,
   email: String,
   date: String,
-  status: String,
+  // status: String,
   comments: String,
 });
 
