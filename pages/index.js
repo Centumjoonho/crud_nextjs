@@ -17,7 +17,7 @@ export default function Home() {
     dispatch(toggleChangeAction());
   };
   const cancelHandler = async () => {
-    console.log("우리의 기억은 영원하다");
+    alert("우리의 기억은 영원하다");
     await dispatch(deleteAction(null));
   };
   const deleteHandler = async () => {

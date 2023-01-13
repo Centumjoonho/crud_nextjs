@@ -3,9 +3,7 @@ import { Schema, models, model } from "mongoose";
 const userSchema = new Schema({
   name: String,
   avatar: String,
-  // email: String,
   date: String,
-  // status: String,
   comments: String,
 });
 
