@@ -3,7 +3,7 @@ import connectMongo from "../../../database/conn";
 import { GetUser, PutUsers, DeleteUsers } from "../../../database/controller";
 
 const corsHandler = cors({
-  origin: process.env.VERCEL_URL || 'http://localhost:3000', // Vercel 도메인 또는 로컬 개발 환경의 주소
+  origin: process.env.VERCEL_URL, // Vercel 도메인 또는 로컬 개발 환경의 주소
   methods: ['GET', 'PUT', 'DELETE'], // 필요한 HTTP 메서드를 설정합니다.
 });
 
