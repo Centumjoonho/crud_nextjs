@@ -31,13 +31,13 @@ export default function Home() {
   return (
     <section>
       <Head>
-        <title>CRUD</title>
+        <title>방명록</title>
         <meta name="description" content="CRUD" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="py-5">
         <h1 className="py-10 text-xl font-bold text-center md:text-5xl">
-          Note-Board
+          방명록
         </h1>
         <div className="container flex justify-between py-5 mx-auto border-b">
           <div className="flex gap-3 left">
