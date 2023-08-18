@@ -1,8 +1,14 @@
 import next from "next";
+import cors from 'micro-cors'; // micro-cors를 임포트합니다.
 import connectMongo from "../../../database/conn";
 import { GetUsers, PostUsers } from "../../../database/controller";
 
-export default async function Handler(req, res) {
+const corsHandler = cors({
+  origin: process.env.VERCEL_URL || 'http://localhost:3000', // Vercel 도메인 또는 로컬 개발 환경의 주소
+  methods: ['GET', 'POST'], // 필요한 HTTP 메서드를 설정합니다.
+});
+
+export default corsHandler(async function Handler(req, res) {
   connectMongo().catch(() =>
     res.status(405).json({ error: "Error in the Connection" })
   );
@@ -22,4 +28,4 @@ export default async function Handler(req, res) {
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
-}
+});
