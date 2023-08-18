@@ -1,4 +1,3 @@
-import next from "next";
 import cors from 'micro-cors'; // micro-cors를 임포트합니다.
 import connectMongo from "../../../database/conn";
 import { GetUsers, PostUsers } from "../../../database/controller";
